@@ -3,7 +3,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
-.box1,.box2,.box3{
+.dropbox{
     height: max-content;
     min-height: 300px;
     width: 250px;
@@ -15,7 +15,7 @@
     align-items: center;
     padding: 10px 0px;
 }
-.element{
+.draggable{
     width: 90%;
     height: 70px;
     background-color: green;
@@ -26,4 +26,8 @@
     font-size: x-large;
     color: white;
     margin: 5px 0px;
+    cursor: move;
+}
+.dragging{
+    opacity: 0.5;
 }
