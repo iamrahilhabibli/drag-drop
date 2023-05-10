@@ -14,7 +14,28 @@ draggables.forEach(draggable =>{
 dropBoxes.forEach(dropbox =>{
     dropbox.addEventListener("dragover", (e)=>{
         e.preventDefault();
+        const afterElememt = dropAfterDraggable(dropbox,e.clientY)
         const draggable = document.querySelector(".dragging")
-        dropbox.appendChild(draggable);
+        if (afterElememt == null) {
+            dropbox.appendChild(draggable);
+        }else{
+            dropbox.insertBefore(draggable,afterElememt)
+        }
     })
 })
+
+function dropAfterDraggable(dropbox, y){
+    const elements = [...dropbox.querySelectorAll(".draggable:not(.dragging)")]
+
+    return elements.reduce((nearest,child)=>{
+        const box = child.getBoundingClientRect(); 
+        const offset = y - box.top - box.height / 2;
+        if (offset < 0 && offset > nearest.offset) {
+            return {offset: offset, element: child}
+        }
+        else{
+            return nearest;
+        }
+
+    }, {offset: Number.NEGATIVE_INFINITY } ).element
+}
