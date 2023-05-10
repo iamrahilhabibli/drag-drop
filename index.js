@@ -1,13 +1,6 @@
 const draggables = document.querySelectorAll(".draggable");
 const dropBoxes = document.querySelectorAll(".dropbox")
 
-
-dropBoxes.forEach(dropbox =>{
-    dropbox.addEventListener("dragover", (e)=>{
-        e.preventDefault();
-    })
-})
-
 draggables.forEach(draggable =>{
     draggable.addEventListener("dragstart", ()=>{
         draggable.classList.add("dragging");
@@ -19,7 +12,8 @@ draggables.forEach(draggable =>{
 })
 
 dropBoxes.forEach(dropbox =>{
-    dropbox.addEventListener("dragover", ()=>{
+    dropbox.addEventListener("dragover", (e)=>{
+        e.preventDefault();
         const draggable = document.querySelector(".dragging")
         dropbox.appendChild(draggable);
     })
